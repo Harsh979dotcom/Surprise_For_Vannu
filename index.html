@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Little Surprise ❤️</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            width: 82%;
+            max-width: 500px;
+            padding: 35px 20px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 38px;
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        button {
+            padding: 15px 28px;
+            border: none;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #yesButton {
+            background: white;
+            color: #ff4f81;
+        }
+
+        #noButton {
+            background: #666;
+            color: white;
+            position: fixed;
+            transition: left 0.25s ease, top 0.25s ease;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>Hey You ❤️</h1>
+
+    <p>
+        I made something special for you...
+    </p>
+
+    <h2>Do you want to see it? 👀</h2>
+
+    <button id="yesButton"
+            onclick="location.href='page2.html'">
+        YES ❤️
+    </button>
+
+</div>
+
+<button id="noButton">NO 😏</button>
+
+<script>
+
+    const noButton = document.getElementById("noButton");
+
+    let attempts = 0;
+
+    function moveButton() {
+
+        attempts++;
+
+        const padding = 15;
+
+        const maxX =
+            window.innerWidth -
+            noButton.offsetWidth -
+            padding;
+
+        const maxY =
+            window.innerHeight -
+            noButton.offsetHeight -
+            padding;
+
+        const minX = padding;
+        const minY = padding;
+
+        const randomX =
+            Math.random() * (maxX - minX) + minX;
+
+        const randomY =
+            Math.random() * (maxY - minY) + minY;
+
+        noButton.style.left = randomX + "px";
+        noButton.style.top = randomY + "px";
+
+        if (attempts === 3) {
+            noButton.innerText = "Nice try 😂";
+        }
+
+        if (attempts === 6) {
+            noButton.innerText = "You can't escape ❤️";
+        }
+
+        if (attempts === 9) {
+            noButton.innerText = "Just press YES 😭";
+        }
+    }
+
+    /* Computer */
+    noButton.addEventListener("mouseover", moveButton);
+
+    /* Phone */
+    noButton.addEventListener("touchstart", function(event) {
+        event.preventDefault();
+        moveButton();
+    });
+
+    /* Also works with clicks */
+    noButton.addEventListener("click", moveButton);
+
+</script>
+
+</body>
+</html>
